@@ -1,0 +1,254 @@
+.emotion-analysis {
+  min-height: 100vh;
+  height: 100vh;
+  background-color: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.emotion-analysis .header {
+  background-color: white;
+  padding: 16px 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.emotion-analysis .heading {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.emotion-analysis .back-button {
+  background-color: transparent;
+  color: #2196F3;
+  padding: 8px 16px;
+  border: 1px solid #2196F3;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.emotion-analysis .back-button:hover {
+  background-color: #2196F3;
+  color: white;
+}
+
+.emotion-analysis .container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.camera-section {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+}
+
+.camera-section video.active,
+.camera-section .captured-image {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 4/3;
+  background-color: #000;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.camera-section video.hidden {
+  display: none;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+}
+
+.capture-button,
+.analyze-button,
+.retake-button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.capture-button {
+  background-color: #2196F3;
+  color: white;
+}
+
+.capture-button:hover {
+  background-color: #1976D2;
+}
+
+.capture-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.analyze-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.analyze-button:hover {
+  background-color: #388E3C;
+}
+
+.analyze-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.retake-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.retake-button:hover {
+  background-color: #d32f2f;
+}
+
+.emotion-info {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  width: 400px;
+  flex-shrink: 0;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+}
+
+.emotion-info h2 {
+  color: #1a1a1a;
+  font-size: 24px;
+  margin: 0 0 16px 0;
+}
+
+.emotion-info .description {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+}
+
+.advice-section h3 {
+  color: #1a1a1a;
+  font-size: 18px;
+  margin: 0 0 16px 0;
+}
+
+.advice-section ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.advice-section li {
+  color: #666;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.advice-section li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .emotion-analysis .container {
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .emotion-info {
+    width: 100%;
+    max-height: none;
+  }
+
+  .camera-section {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .emotion-analysis .header {
+    padding: 12px 16px;
+  }
+
+  .emotion-analysis .container {
+    margin: 16px auto;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .camera-section {
+    padding: 16px;
+  }
+
+  .capture-button,
+  .analyze-button,
+  .retake-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .emotion-info {
+    padding: 16px;
+  }
+
+  .emotion-info h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .emotion-info .description {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .advice-section h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .advice-section li {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+} 

@@ -1,0 +1,328 @@
+.body-language-training {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+}
+
+.body-language-training .header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.body-language-training .back-button {
+  background-color: transparent;
+  border: 1px solid #3498db;
+  color: #3498db;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-right: 20px;
+}
+
+.body-language-training .back-button:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.body-language-training .title {
+  font-size: 24px;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.body-language-training .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .body-language-training .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.body-language-training .training-section {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.body-language-training .camera-container {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.body-language-training video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body-language-training video.active {
+  display: block;
+}
+
+.body-language-training video.hidden {
+  display: none;
+}
+
+.body-language-training .controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.body-language-training .class-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.body-language-training .class-input label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.body-language-training .class-input input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.body-language-training button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.body-language-training .start-recording {
+  background-color: #27ae60;
+  color: white;
+}
+
+.body-language-training .start-recording:hover {
+  background-color: #219653;
+}
+
+.body-language-training .start-recording:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.body-language-training .capture-sample {
+  background-color: #2980b9;
+  color: white;
+}
+
+.body-language-training .capture-sample:hover {
+  background-color: #2471a3;
+}
+
+.body-language-training .stop-recording {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.body-language-training .stop-recording:hover {
+  background-color: #c0392b;
+}
+
+.body-language-training .sample-count {
+  background-color: #e3f2fd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #1565c0;
+  margin-bottom: 10px;
+}
+
+.body-language-training .feedback-message {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #d5f5e3;
+  border-left: 4px solid #27ae60;
+  border-radius: 4px;
+}
+
+.body-language-training .model-section {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.body-language-training .model-section h2 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.body-language-training .class-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.body-language-training .class-item {
+  background-color: #3498db;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.body-language-training .training-controls {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.body-language-training .train-model {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.body-language-training .train-model:hover {
+  background-color: #8e44ad;
+}
+
+.body-language-training .train-model:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.body-language-training .training-status {
+  padding: 10px;
+  background-color: #eaf2f8;
+  border-left: 4px solid #3498db;
+  border-radius: 4px;
+}
+
+.body-language-training .download-model {
+  background-color: #f39c12;
+  color: white;
+}
+
+.body-language-training .download-model:hover {
+  background-color: #d35400;
+}
+
+.body-language-training .training-tips {
+  margin-top: 20px;
+  background-color: #e8f5e9;
+  border-radius: 6px;
+  padding: 15px;
+  border-left: 4px solid #4caf50;
+}
+
+.body-language-training .training-tips h4 {
+  margin-top: 0;
+  color: #2e7d32;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.body-language-training .training-tips ul {
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+.body-language-training .training-tips li {
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+}
+
+.body-language-training .training-warning {
+  margin-top: 12px;
+  padding: 8px;
+  background-color: #fff9c4;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.body-language-training .delete-section {
+  margin-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
+}
+
+.body-language-training .delete-data {
+  background-color: #e74c3c;
+  color: white;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.body-language-training .delete-data:hover {
+  background-color: #c0392b;
+}
+
+.body-language-training .delete-confirm {
+  background-color: #fff0f0;
+  border: 1px solid #ffcccc;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.body-language-training .warning-text {
+  color: #c0392b;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.body-language-training .confirm-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.body-language-training .confirm-delete {
+  background-color: #e74c3c;
+  color: white;
+  flex: 1;
+}
+
+.body-language-training .confirm-delete:hover {
+  background-color: #c0392b;
+}
+
+.body-language-training .cancel-delete {
+  background-color: #7f8c8d;
+  color: white;
+  flex: 1;
+}
+
+.body-language-training .cancel-delete:hover {
+  background-color: #636e72;
+} 

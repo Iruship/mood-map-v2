@@ -1,0 +1,239 @@
+/* Main Layout */
+.live-depression-detection {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #f8f9fa;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.heading {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* Camera Section */
+.camera-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.camera-container {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 4/3;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#previewCanvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Recording Controls */
+.recording-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.recording-timer {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.start-recording-button,
+.stop-recording-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.start-recording-button {
+  background: #28a745;
+  color: white;
+}
+
+.stop-recording-button {
+  background: #dc3545;
+  color: white;
+}
+
+/* Analysis Overlay */
+.analysis-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.analysis-popup {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.close-analysis {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #666;
+}
+
+/* Analysis Steps */
+.analysis-steps {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.analysis-step:last-child {
+  border-bottom: none;
+}
+
+.step-checkmark {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eee;
+  color: transparent;
+}
+
+.analysis-step.completed .step-checkmark {
+  background: #28a745;
+  color: white;
+}
+
+.step-text {
+  color: #666;
+}
+
+.analysis-step.completed .step-text {
+  color: #28a745;
+}
+
+/* Analysis Report */
+.report-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.report-section {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.report-section h3 {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f8f9fa;
+}
+
+/* Charts and Data Display */
+.chart-container {
+  height: 200px;
+  margin-top: 1rem;
+}
+
+.dominant-emotion,
+.stability-item,
+.depression-assessment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.transition-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .live-depression-detection {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .analysis-steps {
+    flex-direction: column;
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .transition-stats {
+    grid-template-columns: 1fr;
+  }
+}
+  

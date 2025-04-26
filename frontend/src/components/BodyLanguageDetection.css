@@ -1,0 +1,410 @@
+.body-language-detection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+}
+
+.body-language-detection .header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.body-language-detection .back-button {
+  background-color: transparent;
+  border: 1px solid #3498db;
+  color: #3498db;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-right: 20px;
+}
+
+.body-language-detection .back-button:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.body-language-detection .title {
+  font-size: 24px;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.body-language-detection .no-model-message {
+  background-color: #fcf8e3;
+  border-left: 4px solid #f39c12;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.body-language-detection .no-model-message p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.body-language-detection .train-model-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.body-language-detection .train-model-button:hover {
+  background-color: #2980b9;
+}
+
+.body-language-detection .detection-container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .body-language-detection .detection-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.body-language-detection .video-section {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.body-language-detection .camera-container,
+.body-language-detection .captured-container {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.body-language-detection .camera-container.real-time {
+  border: 2px solid #3498db;
+}
+
+.body-language-detection .realtime-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #3498db;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  animation: pulse-blue 1.5s infinite;
+}
+
+@keyframes pulse-blue {
+  0% {
+    background-color: rgba(52, 152, 219, 0.9);
+  }
+  50% {
+    background-color: rgba(52, 152, 219, 0.6);
+  }
+  100% {
+    background-color: rgba(52, 152, 219, 0.9);
+  }
+}
+
+.body-language-detection video,
+.body-language-detection .captured-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body-language-detection video.active {
+  display: block;
+}
+
+.body-language-detection video.hidden {
+  display: none;
+}
+
+.body-language-detection .capture-controls,
+.body-language-detection .analyze-controls,
+.body-language-detection .realtime-controls {
+  display: flex;
+  gap: 15px;
+}
+
+@media (max-width: 500px) {
+  .body-language-detection .capture-controls,
+  .body-language-detection .analyze-controls {
+    flex-direction: column;
+  }
+}
+
+.body-language-detection button {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.body-language-detection button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.body-language-detection .capture-button {
+  background-color: #27ae60;
+  color: white;
+}
+
+.body-language-detection .capture-button:hover:not(:disabled) {
+  background-color: #219653;
+}
+
+.body-language-detection .realtime-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.body-language-detection .realtime-button:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.body-language-detection .stop-realtime-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.body-language-detection .stop-realtime-button:hover {
+  background-color: #c0392b;
+}
+
+.body-language-detection .analyze-button {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.body-language-detection .analyze-button:hover:not(:disabled) {
+  background-color: #8e44ad;
+}
+
+.body-language-detection .retake-button {
+  background-color: #e67e22;
+  color: white;
+}
+
+.body-language-detection .retake-button:hover:not(:disabled) {
+  background-color: #d35400;
+}
+
+.body-language-detection .result-section {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.body-language-detection .error-message {
+  background-color: #fdedec;
+  border-left: 4px solid #e74c3c;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  color: #c0392b;
+}
+
+.body-language-detection .detection-result {
+  background-color: #eafaf1;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.body-language-detection .result-header {
+  background-color: #27ae60;
+  color: white;
+  padding: 12px 15px;
+}
+
+.body-language-detection .result-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.body-language-detection .result-body {
+  padding: 15px;
+}
+
+.body-language-detection .result-item {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.body-language-detection .label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.body-language-detection .value {
+  font-weight: 500;
+  color: #27ae60;
+}
+
+.body-language-detection .confidence-bar {
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.body-language-detection .confidence-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.body-language-detection .detection-tips {
+  margin-top: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 12px;
+  border-left: 3px solid #3498db;
+}
+
+.body-language-detection .detection-tips p {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+.body-language-detection .detection-tips ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.body-language-detection .detection-tips li {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #34495e;
+}
+
+.body-language-detection .available-classes {
+  margin-top: auto;
+}
+
+.body-language-detection .available-classes h3 {
+  font-size: 16px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.body-language-detection .class-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.body-language-detection .class-item {
+  background-color: #3498db;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.body-language-detection .overlay-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body-language-detection .overlay-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.body-language-detection .overlay-toggle {
+  background-color: rgba(52, 152, 219, 0.7);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.body-language-detection .overlay-toggle:hover {
+  background-color: rgba(52, 152, 219, 0.9);
+}
+
+.body-language-detection .overlay-toggle.active {
+  background-color: rgba(46, 204, 113, 0.7);
+}
+
+.body-language-detection .overlay-toggle.active:hover {
+  background-color: rgba(46, 204, 113, 0.9);
+}
+
+.body-language-detection .realtime-prediction {
+  position: absolute;
+  bottom: 50px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.body-language-detection .prediction-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.body-language-detection .prediction-confidence {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+} 

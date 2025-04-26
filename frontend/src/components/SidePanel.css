@@ -1,0 +1,70 @@
+  /* Side Panel */
+.side-panel {
+    width: 250px;
+    background-color: #88c8f7; /* Color for the side panel */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .profile-section {
+    text-align: center;
+  }
+  
+  .profile-section h2 {
+    color: #f4f4f4;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+
+  .transparent-button {
+    background: #96d1fc;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px;
+    border-color: #333;
+    color: #333;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+  }
+  
+  .transparent-button:hover {
+    background: #84c9fa;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .logout {
+    margin-top: auto;
+    text-align: center;
+  }
+  
+  .logout button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .logout button:hover {
+    background-color: #cc0000;
+  }

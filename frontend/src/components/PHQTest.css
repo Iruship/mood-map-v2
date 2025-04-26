@@ -1,0 +1,73 @@
+body {
+  background-image: linear-gradient(to right, #A3C9F1, #B8E6D9);
+  transition: background-image 1s ease;
+}
+
+/* PHQ-9 Test Layout */
+.phq-test-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.phq-test-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* Questions Section */
+.questions-section {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.question {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+/* Submit Section */
+.submit-section {
+  padding: 10px;
+  background-color: #e7f3ff;
+  border-radius: 10px;
+  border: 1px solid #88c8f7;
+}
+
+.results {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.help-link a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #0056b3;
+}
+
+.help-link a:hover {
+  text-decoration: underline;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #2196F3;
+  padding: 8px 16px;
+  border: 1px solid #2196F3;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #2196F3;
+  color: white;
+}

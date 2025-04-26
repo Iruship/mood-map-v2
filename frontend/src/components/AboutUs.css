@@ -1,0 +1,75 @@
+/* AboutUs Page Layout */
+.aboutus-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .aboutus-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Top Panel */
+  .top-panel {
+    display: flex;
+    align-items: center;
+    background-color: #e7f3ff;
+    border: 1px solid #88c8f7;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .user-details {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .user-details h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #0056b3;
+  }
+  
+  .user-details p {
+    margin: 5px 0;
+  }
+  
+  /* Project Details */
+  .project-details h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #0056b3;
+  }
+  
+  .project-details p,
+  .project-details ul {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .project-details ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .project-details ul li {
+    margin-bottom: 5px;
+  }
+  
