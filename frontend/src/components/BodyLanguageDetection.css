@@ -407,4 +407,67 @@
   font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
+}
+
+/* Add new styles for the model selector */
+.model-selector {
+  background-color: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.model-selector label {
+  font-weight: 600;
+  margin-right: 12px;
+  color: #2c3e50;
+}
+
+.model-selector select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+  flex-grow: 1;
+  max-width: 200px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.model-selector select:hover {
+  border-color: #3498db;
+}
+
+.model-selector select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.model-selector select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loading-indicator {
+  margin-left: 12px;
+  font-size: 14px;
+  color: #7f8c8d;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 } 

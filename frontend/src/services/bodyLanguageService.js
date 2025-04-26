@@ -28,6 +28,39 @@ class BodyLanguageService {
     }
   }
 
+  // Get available models
+  async getAvailableModels() {
+    try {
+      const response = await axios.get(`${API_URL}/api/body-language/available-models`);
+      return response.data;
+    } catch (error) {
+      console.error('Error getting available models:', error);
+      throw error;
+    }
+  }
+
+  // Switch to a different model
+  async switchModel(modelType) {
+    try {
+      const formData = new FormData();
+      formData.append('model_type', modelType);
+
+      const response = await axios.post(
+        `${API_URL}/api/body-language/switch-model`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error switching model:', error);
+      throw error;
+    }
+  }
+
   // Process an image for body language detection
   async detectBodyLanguage(imageFile) {
     try {

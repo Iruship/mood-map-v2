@@ -4,12 +4,12 @@ These settings control the sensitivity and accuracy of the body language detecti
 """
 
 # MediaPipe detection confidence thresholds
-DETECTION_CONFIDENCE = 0.7  # Minimum confidence for detection (0.0-1.0)
-TRACKING_CONFIDENCE = 0.7   # Minimum confidence for tracking (0.0-1.0)
+DETECTION_CONFIDENCE = 0.5  # Minimum confidence for detection (0.0-1.0)
+TRACKING_CONFIDENCE = 0.5   # Minimum confidence for tracking (0.0-1.0)
 MODEL_COMPLEXITY = 2        # MediaPipe model complexity (0, 1, or 2)
 
 # Prediction confidence thresholds
-PREDICTION_CONFIDENCE = 0.65  # Minimum confidence required for prediction (0.0-1.0)
+PREDICTION_CONFIDENCE = 0.7  # Minimum confidence required for prediction (0.0-1.0)
 
 # Feature processing settings
 # Note: These settings are for configuration only. In critical code paths, 

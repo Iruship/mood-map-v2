@@ -379,4 +379,50 @@ async def delete_all_data():
         return JSONResponse(
             status_code=500,
             content={"success": False, "error": f"Error deleting training data: {str(e)}"}
+        )
+
+@router.get("/available-models")
+async def get_available_models():
+    """Get list of available body language detection models"""
+    try:
+        available_models = body_language_service.get_available_model_types()
+        current_model = body_language_service.get_current_model_type()
+        
+        return {
+            "success": True,
+            "available_models": available_models,
+            "current_model": current_model
+        }
+    except Exception as e:
+        print(f"Error getting available models: {str(e)}")
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": f"Error getting available models: {str(e)}"}
+        )
+
+@router.post("/switch-model")
+async def switch_model(model_type: str = Form(...)):
+    """Switch to a different body language detection model"""
+    try:
+        success = body_language_service.switch_model(model_type)
+        
+        if success:
+            return {
+                "success": True,
+                "message": f"Successfully switched to {model_type} model",
+                "current_model": body_language_service.get_current_model_type()
+            }
+        else:
+            return JSONResponse(
+                status_code=400,
+                content={
+                    "success": False, 
+                    "error": f"Failed to switch to {model_type} model. Available models: {body_language_service.get_available_model_types()}"
+                }
+            )
+    except Exception as e:
+        print(f"Error switching model: {str(e)}")
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": f"Error switching model: {str(e)}"}
         ) 

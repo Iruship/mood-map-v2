@@ -40,6 +40,9 @@ const BodyLanguageDetection = () => {
   const [consecutiveFailures, setConsecutiveFailures] = useState(0);
   const [isModelReady, setIsModelReady] = useState(false);
   const [stabilizedResult, setStabilizedResult] = useState(null);
+  const [availableModels, setAvailableModels] = useState([]);
+  const [currentModel, setCurrentModel] = useState('default');
+  const [isChangingModel, setIsChangingModel] = useState(false);
   
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -49,6 +52,7 @@ const BodyLanguageDetection = () => {
   useEffect(() => {
     setupCamera();
     checkModelStatus();
+    fetchAvailableModels();
     
     return () => {
       // Cleanup camera and detection interval on unmount
@@ -102,6 +106,47 @@ const BodyLanguageDetection = () => {
       console.error("Error checking model status:", error);
       setShowModelStatus(true);
       setError("Error checking model status. Please try again later.");
+    }
+  };
+  
+  const fetchAvailableModels = async () => {
+    try {
+      const response = await bodyLanguageService.getAvailableModels();
+      if (response.success) {
+        setAvailableModels(response.available_models);
+        setCurrentModel(response.current_model);
+      }
+    } catch (error) {
+      console.error("Error fetching available models:", error);
+      setError("Error fetching available models. Please try again later.");
+    }
+  };
+  
+  const handleModelChange = async (modelType) => {
+    if (modelType === currentModel) return;
+    
+    setIsChangingModel(true);
+    setError(null);
+    
+    // Stop detection if active
+    if (detectionActive) {
+      stopRealTimeDetection();
+    }
+    
+    try {
+      const response = await bodyLanguageService.switchModel(modelType);
+      if (response.success) {
+        setCurrentModel(response.current_model);
+        setDetectionResult(null);
+        setStabilizedResult(null);
+      } else {
+        setError(response.error || "Failed to switch model. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error switching model:", error);
+      setError("Error switching model. Please try again later.");
+    } finally {
+      setIsChangingModel(false);
     }
   };
   
@@ -304,6 +349,30 @@ const BodyLanguageDetection = () => {
     );
   };
   
+  // Add this new component for model selector
+  const renderModelSelector = () => {
+    return (
+      <div className="model-selector">
+        <label htmlFor="model-select">Detection Model: </label>
+        <select 
+          id="model-select" 
+          value={currentModel}
+          onChange={(e) => handleModelChange(e.target.value)}
+          disabled={isChangingModel || detectionActive}
+        >
+          {availableModels.map((model) => (
+            <option key={model} value={model}>
+              {model === 'default' ? 'Default Model' : 
+               model === 'neural_network' ? 'Neural Network' : 
+               'RNN Model'}
+            </option>
+          ))}
+        </select>
+        {isChangingModel && <span className="loading-indicator">Switching model...</span>}
+      </div>
+    );
+  };
+  
   // Return the component UI
   return (
     <div className="body-language-detection">
@@ -314,103 +383,108 @@ const BodyLanguageDetection = () => {
         <h1 className="title">Body Language Detection</h1>
       </div>
       
-      {showModelStatus && availableClasses.length === 0 ? (
-        <div className="no-model-message">
-          <p>{error}</p>
-          <button 
-            className="train-model-button"
-            onClick={() => navigate("/body-language-training")}
-          >
-            Go to Training Page
-          </button>
-        </div>
-      ) : (
-        <div className="detection-container">
-          <div className="video-section">
-            {!capturedImage && !detectionActive ? (
-              <>
-                <div className="camera-container">
-                  <video 
-                    ref={videoRef} 
-                    autoPlay 
-                    playsInline
-                    className={isCapturing ? "active" : "hidden"}
-                  />
-                </div>
-                
-                <div className="capture-controls">
-                  <button 
-                    className="capture-button"
-                    onClick={captureImage}
-                    disabled={!isCapturing}
-                  >
-                    Capture Image
-                  </button>
-                  
-                  <button 
-                    className="realtime-button"
-                    onClick={startRealTimeDetection}
-                    disabled={!isCapturing}
-                  >
-                    Start Real-time Detection
-                  </button>
-                </div>
-              </>
-            ) : detectionActive ? (
-              renderVideoWithPrediction()
-            ) : (
-              <>
-                <div className="captured-container">
-                  <img 
-                    src={capturedImage} 
-                    alt="Captured" 
-                    className="captured-image" 
-                  />
-                </div>
-                
-                <div className="analyze-controls">
-                  <button 
-                    className="analyze-button"
-                    onClick={analyzeBodyLanguage}
-                    disabled={isAnalyzing}
-                  >
-                    {isAnalyzing ? "Analyzing..." : "Analyze Body Language"}
-                  </button>
-                  
-                  <button 
-                    className="retake-button"
-                    onClick={retake}
-                    disabled={isAnalyzing}
-                  >
-                    Retake Photo
-                  </button>
-                </div>
-              </>
-            )}
+      <div className="container">
+        {/* Add the model selector here */}
+        {renderModelSelector()}
+        
+        {showModelStatus && availableClasses.length === 0 ? (
+          <div className="no-model-message">
+            <p>{error}</p>
+            <button 
+              className="train-model-button"
+              onClick={() => navigate("/body-language-training")}
+            >
+              Go to Training Page
+            </button>
           </div>
-          
-          <div className="result-section">
-            {error ? (
-              <div className="error-message">{error}</div>
-            ) : (
-              renderDetectionResult()
-            )}
+        ) : (
+          <div className="detection-container">
+            <div className="video-section">
+              {!capturedImage && !detectionActive ? (
+                <>
+                  <div className="camera-container">
+                    <video 
+                      ref={videoRef} 
+                      autoPlay 
+                      playsInline
+                      className={isCapturing ? "active" : "hidden"}
+                    />
+                  </div>
+                  
+                  <div className="capture-controls">
+                    <button 
+                      className="capture-button"
+                      onClick={captureImage}
+                      disabled={!isCapturing}
+                    >
+                      Capture Image
+                    </button>
+                    
+                    <button 
+                      className="realtime-button"
+                      onClick={startRealTimeDetection}
+                      disabled={!isCapturing}
+                    >
+                      Start Real-time Detection
+                    </button>
+                  </div>
+                </>
+              ) : detectionActive ? (
+                renderVideoWithPrediction()
+              ) : (
+                <>
+                  <div className="captured-container">
+                    <img 
+                      src={capturedImage} 
+                      alt="Captured" 
+                      className="captured-image" 
+                    />
+                  </div>
+                  
+                  <div className="analyze-controls">
+                    <button 
+                      className="analyze-button"
+                      onClick={analyzeBodyLanguage}
+                      disabled={isAnalyzing}
+                    >
+                      {isAnalyzing ? "Analyzing..." : "Analyze Body Language"}
+                    </button>
+                    
+                    <button 
+                      className="retake-button"
+                      onClick={retake}
+                      disabled={isAnalyzing}
+                    >
+                      Retake Photo
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
             
-            {availableClasses.length > 0 && (
-              <div className="available-classes">
-                <h3>Available Classes</h3>
-                <div className="class-list">
-                  {availableClasses.map((cls, index) => (
-                    <div key={index} className="class-item">
-                      {cls}
-                    </div>
-                  ))}
+            <div className="result-section">
+              {error ? (
+                <div className="error-message">{error}</div>
+              ) : (
+                renderDetectionResult()
+              )}
+              
+              {availableClasses.length > 0 && (
+                <div className="available-classes">
+                  <h3>Available Classes</h3>
+                  <div className="class-list">
+                    {availableClasses.map((cls, index) => (
+                      <div key={index} className="class-item">
+                        {cls}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
       
       <canvas ref={canvasRef} style={{ display: 'none' }} />
     </div>
